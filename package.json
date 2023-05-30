@@ -1,0 +1,101 @@
+{
+  "name": "visual-presets",
+  "publisher": "matrizzDev",
+  "displayName": "Visual-presets",
+  "description": "A VSCode extension that allows predefining routine settings.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:extension.createProject",
+    "onCommand:extension.setStatusBarItemName",
+    "onCommand:extension.setStatusBarItemIcon",
+    "onCommand:extension.setStatusBarItemTooltip",
+    "onCommand:extension.setStatusBarItemEnabled"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Visual Presets",
+      "properties": {
+        "statusBarCustomItem.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable custom status bar."
+        },
+        "statusBarCustomItem.icon": {
+          "type": "string",
+          "default": "</>",
+          "description": "Custom icon for the status bar."
+        },
+        "statusBarCustomItem.text": {
+          "type": "string",
+          "default": "m a t r i z z  d e v e l o p m e n t",
+          "description": "Custom text for the status bar."
+        },
+        "statusBarCustomItem.tooltip": {
+          "type": "string",
+          "default": "",
+          "description": "Custom tooltip for the status bar."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "extension.createProject",
+        "title": "Create Project",
+        "description": "Init a new project with your template."
+      },
+      {
+        "command": "extension.setStatusBarItemName",
+        "title": "Set Text to Status Bar",
+        "description": "Set a name to the status bar (Ex:. John Doe).",
+        "category": "View"
+      },
+      {
+        "command": "extension.setStatusBarItemIcon",
+        "title": "Set Icon on Status Bar",
+        "description": "Set an icon to the status bar.",
+        "category": "View"
+      },
+      {
+        "command": "extension.setStatusBarItemTooltip",
+        "title": "Tooltip for text on Status Bar",
+        "description": "Set a tooltip to the text status bar.",
+        "category": "View"
+      },
+      {
+        "command": "extension.setStatusBarItemEnabled",
+        "title": "Enable/disable Custom Status Bar",
+        "description": "Enable/disable the status bar custom item.",
+        "category": "View"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.77.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4",
+    "@vscode/test-electron": "^2.3.0"
+  },
+  "autoUpdate": true  
+}
