@@ -5,7 +5,7 @@
   "description": "A VSCode extension that allows predefining routine settings.",
   "repository": {"type": "git", "url": "https:/https:/github.com/matrizz/visual-presets.git" },
   "icon": "img/icon.jpg",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.77.0"
   },

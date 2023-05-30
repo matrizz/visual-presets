@@ -37,13 +37,13 @@ export function activate(context: vscode.ExtensionContext) {
 										switch (template) {
 											case 'TypeScript (TSX)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npm create vite@latest ${projectName} --template typescript
+												command = `npm create vite@latest ${projectName} -- --template react-ts
 														   cd ${projectName}
 														   npm run dev`;
 												break;
 											case 'JavaScript (JSX)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npm create vite@latest ${projectName} --template javascript
+												command = `npm create vite@latest ${projectName} -- --template react
 														   cd ${projectName}
 														   npm run dev`;
 												break;
