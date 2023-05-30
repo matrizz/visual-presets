@@ -37,11 +37,15 @@ export function activate(context: vscode.ExtensionContext) {
 										switch (template) {
 											case 'TypeScript (TSX)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npm create vite@latest ${projectName} --template typescript`;
+												command = `npm create vite@latest ${projectName} --template typescript
+														   cd ${projectName}
+														   npm run dev`;
 												break;
 											case 'JavaScript (JSX)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npm create vite@latest ${projectName} --template javascript`;
+												command = `npm create vite@latest ${projectName} --template javascript
+														   cd ${projectName}
+														   npm run dev`;
 												break;
 										}
 									}
@@ -56,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
 								break;
 
 							case 'Soon':
-								//
+								vscode.window.showInformationMessage('Soon..');
 								break;
 							case 'React Native':
 								vscode.window.showQuickPick(['Blank', 'Blank (TypeScript)', 'Navigation (TypeScript)', 'Blank (Bare)', 'Expo'], {
@@ -66,23 +70,28 @@ export function activate(context: vscode.ExtensionContext) {
 										switch (template) {
 											case 'Blank':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npx create-react-app ${projectName} --template`;
+												command = `npx create-react-app ${projectName} --template
+														   cd ${projectName}`;
 												break;
 											case 'Blank (TypeScript)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npx create-react-app ${projectName} --template typescript`;
+												command = `npx create-react-app ${projectName} --template typescript
+														   cd ${projectName}`;
 												break;
 											case 'Blank (Bare)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npx create-react-app ${projectName} --template bare`;
+												command = `npx create-react-app ${projectName} --template bare
+														   cd ${projectName}`;
 												break;
 											case 'Navigation (TypeScript)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npx create-react-app ${projectName} --template typescript-navigation`;
+												command = `npx create-react-app ${projectName} --template typescript-navigation
+														   cd ${projectName}`;
 												break;
 											case 'Expo':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npx create-expo-app ${projectName}`;
+												command = `npx create-expo-app ${projectName}
+														   cd ${projectName}`;
 										}
 									}
 									else {
@@ -94,7 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
 									if (rootPath!=='') {
 										const terminal = vscode.window.createTerminal({
 											cwd: rootPath,
-											name: 'Creating Project...'
+											name: 'New Project'
 									});
 									
 										terminal.show();
