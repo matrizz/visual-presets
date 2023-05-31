@@ -15,7 +15,7 @@ let itemSettings = vscode.workspace.getConfiguration('statusBarCustomItem');
 export function activate(context: vscode.ExtensionContext) {
 
 	vscode.workspace.onDidChangeConfiguration(() => {
-		updateStatusBar(context, );
+		updateStatusBar(context);
 	});
 
 	let dispose = vscode.commands.registerCommand('extension.createProject', () => {
@@ -37,17 +37,25 @@ export function activate(context: vscode.ExtensionContext) {
 										switch (template) {
 											case 'TypeScript (TSX)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npm create vite@latest ${projectName} -- --template react-ts
-														   cd ${projectName}
-														   npm run dev`;
+												command = `npm create vite@latest ${projectName} -- --template react-ts; cd ${projectName}; npm i; npm run dev`;
 												break;
 											case 'JavaScript (JSX)':
 												vscode.window.showInformationMessage('Aguarde, preparando o workspace...');
-												command = `npm create vite@latest ${projectName} -- --template react
-														   cd ${projectName}
-														   npm run dev`;
+												command = `npm create vite@latest ${projectName} -- --template react; cd ${projectName}; npm i; npm run dev`;
 												break;
 										}
+
+										const rootPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : '';
+									
+										if (rootPath!=='') {
+										const terminal = vscode.window.createTerminal({
+											cwd: rootPath,
+											name: 'New Project'
+									});
+									
+										terminal.show();
+										terminal.sendText(command);
+									}
 									}
 									else {
 										vscode.window.showErrorMessage('Nenhum diretório selecionado');
@@ -56,7 +64,18 @@ export function activate(context: vscode.ExtensionContext) {
 								break;
 							case 'HTML + CSS + JS':
 								vscode.window.showInformationMessage('Aguarde, preparando o projeto...');
-								createFolder(projectName);
+								command = `mkdir ${projectName}; cd ${projectName}; npm init -y;`;
+								const rootPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : '';
+									
+									if (rootPath!=='') {
+										const terminal = vscode.window.createTerminal({
+											cwd: rootPath,
+											name: 'New Project'
+									});
+									
+										terminal.show();
+										terminal.sendText(command);
+									}
 								break;
 
 							case 'Soon':
